@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="iv">
+        
+    </div>
+    <script>
+        const url = 'https://foreca-weather.p.rapidapi.com/forecast/hourly/102643743?alt=0&tempunit=C&windunit=MS&tz=Asia%2FKolkata&periods=8&dataset=full&history=0';
+        const options = {
+            method: 'GET',
+            headers: {
+                'X-RapidAPI-Key': '228d42258fmsh6e34c781dcce443p119948jsn8ef5b3c67a11',
+                'X-RapidAPI-Host': 'foreca-weather.p.rapidapi.com'
+            }
+        };
+
+        try {
+            async function weather() {
+                const response = await fetch(url, options);
+                const result = await response.json();
+                let iv = document.getElementById("iv")
+                // let span = document.createElement("div")
+                // let span2 = document.createElement("div")
+                // iv.appendChild(span)
+                // iv.appendChild(span2)
+                // let text_t = document.createTextNode("Time: "+result.forecast[0].time)
+                // let text_c = document.createTextNode("Climate: "+result.forecast[0].symbolPhrase)
+                // span.appendChild(text_t)
+                // span2.appendChild(text_c)
+                let div = []
+                let text_t = []
+                let text_c = []
+                for (let i = 0 ; i < 8 ; i++){
+                    div[i] = document.createElement("div")
+                    iv.appendChild(div[i])
+                    text_t[i] = document.createTextNode("Time: "+result.forecast[i].time)
+                    div[i].appendChild(text_t[i])
+                    text_c[i] = document.createTextNode("Climate: "+result.forecast[i].symbolPhrase)
+                    div[i].appendChild(text_c[i])
+                }
+                console.log(result);
+            }
+            weather()
+        } catch (error) {
+            console.error(error);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="Bill" placeholder="Enter your bill here" required><br>
+    <input id="tipPercent" placeholder="Enter the percentage of tip" required><br>
+    <label>Bill to be split between</label>
+    <select id="split">
+        <option>No one</option>
+        <option>2 Person</option>
+        <option>3 Person</option>
+        <option>4 Person</option>
+        <option>5 Person</option>
+        <option>6 Person</option>
+        <option>7 Person</option>
+        <option>8 Person</option>
+    </select><br>
+    <button id="btn">Calculate</button>
+    <div id="answer"></div>
+    <script>
+        let split_between = 1
+        let split = document.getElementById("split")
+        split.addEventListener('change', function() {
+            split_between = parseFloat(split.value.slice(0, 1).trim());
+            
+        });
+        let btn = document.getElementById("btn")
+        let Bill = document.getElementById("Bill")
+        let tipPercent = document.getElementById("tipPercent")
+        let answer = document.getElementById("answer")
+        btn.addEventListener('click',function(){
+            let billAmount = parseFloat(Bill.value);
+            let tipAmount = parseFloat(tipPercent.value);
+            let TotalAmount = (billAmount + (billAmount * (tipAmount / 100)))/split_between;
+            console.log(TotalAmount)
+            if(split_between == 1){
+                answer.innerHTML = `You have to pay ${TotalAmount}`
+            }
+            else{
+                answer.innerHTML = `Each one of you has to pay${TotalAmount}`
+            }
+        })
+        
+    </script>
+</body>
+
+</html>

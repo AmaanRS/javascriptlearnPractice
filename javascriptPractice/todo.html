@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div>
+        <input id="input_1">
+        <button id="add_btn">Add</button>
+        <button id="del_btn">Delete</button>
+    </div>
+    <ul id="content_div">
+        <li>1st task</li>
+    </ul>
+
+
+    <script>
+        let content_div = document.getElementById("content_div")
+        let add_btn = document.getElementById("add_btn")
+        let input_1 = document.getElementById("input_1")
+        let del_btn = document.getElementById("del_btn")
+        let myNodelist = document.getElementsByTagName("LI");
+        let i;
+        add_btn.onclick=()=>{
+            let newli = document.createElement("li")
+            let text = input_1.value
+            let t = document.createTextNode(text)
+            newli.appendChild(t)
+            content_div.appendChild(newli)
+        }
+        del_btn.onclick = ()=>{
+            var text = input_1.value.trim()
+            for (let i=0; i<myNodelist.length ; i++)
+            {
+                if(myNodelist[i].textContent.trim() === text)
+                {
+                   myNodelist[i].remove()
+                }
+            }
+        }
+    </script>
+</body>
+</html>

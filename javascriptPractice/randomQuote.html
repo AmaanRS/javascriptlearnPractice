@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">Generate quote</button>
+    <div id="qote"></div>
+    <script>
+        const url = 'https://quotes-inspirational-quotes-motivational-quotes.p.rapidapi.com/quote?token=ipworld.info';
+        const options = {
+            method: 'GET',
+            headers: {
+                'X-RapidAPI-Key': '228d42258fmsh6e34c781dcce443p119948jsn8ef5b3c67a11',
+                'X-RapidAPI-Host': 'quotes-inspirational-quotes-motivational-quotes.p.rapidapi.com'
+            }
+        };
+
+        let btn = document.getElementById("btn")
+        let qote = document.getElementById("qote")
+        try {
+            async function quote() {
+                const response = await fetch(url, options);
+                const result = await response.text();
+                console.log(result)
+                btn.addEventListener('click', function () {
+                    qote.innerHTML = result
+                })
+            }
+            quote()
+        } catch (error) {
+            console.error(error);
+        }
+    </script>
+</body>
+
+</html>

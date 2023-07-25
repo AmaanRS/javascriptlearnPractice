@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+</head>
+
+<body>
+    <div id="iv">
+        <input id="inp" style="display:block;">
+        <button id="btn">Submit</button>
+    </div>
+    <script>
+        const OBJECT = {
+            0: {
+                question: "What country has the highest life expectancy?",
+                answer: "Hong Kong",
+            },
+            1: {
+                question: "Where would you be if you were standing on the Spanish Steps?",
+                answer: "Rome",
+            },
+            2: {
+                question: "Which language has the more native speakers: English or Spanish?",
+                answer: "Spanish",
+            },
+            3: {
+                question: "What is the most common surname in the United States?",
+                answer: "Smith",
+            },
+            4: {
+                question: "What disease commonly spread on pirate ships?",
+                answer: "Scurvy",
+            },
+            5: {
+                question: "Who was the Ancient Greek God of the Sun?",
+                answer: "Apollo",
+            },
+            6: {
+                question: "What was the name of the crime boss who was head of the feared Chicago Outfit?",
+                answer: "Al Capone",
+            },
+            7: {
+                question: "What year was the United Nations established?",
+                answer: "1945",
+            },
+            8: {
+                question: "Who has won the most total Academy Awards?",
+                answer: "Walt Disney",
+            },
+            9: {
+                question: "What artist has the most streams on Spotify?",
+                answer: "Drake",
+            },
+            10: {
+                question: "How many minutes are in a full week?",
+                answer: "10,080",
+            },
+            11: {
+                question: "What car manufacturer had the highest revenue in 2020?",
+                answer: "Volkswagen",
+            },
+            12: {
+                question: "How many elements are in the periodic table?",
+                answer: "118",
+            },
+            13: {
+                question: 'What company was originally called "Cadabra"?',
+                answer: "Amazon",
+            },
+            14: {
+                question: "How many faces does a Dodecahedron have?",
+                answer: "12",
+            },
+            15: {
+                question: "Queen guitarist Brian May is also an expert in what scientific field?",
+                answer: "Astrophysics",
+            },
+            16: {
+                question: "Aureolin is a shade of what color?",
+                answer: "Yellow",
+            },
+            17: {
+                question: "How many ghosts chase Pac-Man at the start of each game?",
+                answer: "4",
+            },
+            18: {
+                question: "What Renaissance artist is buried in Rome's Pantheon?",
+                answer: "Raphael",
+            },
+            19: {
+                question: 'What shoe brand makes the "Mexico 66"?',
+                answer: "Onitsuka Tiger",
+            },
+            20: {
+                question: "What game studio makes the Red Dead Redemption series?",
+                answer: "Rockstar Games",
+            },
+            21: {
+                question: "Who was the last Tsar of Russia?",
+                answer: "Nicholas II",
+            },
+            22: {
+                question: "What character have both Robert Downey Jr. and Benedict Cumberbatch played?",
+                answer: "Sherlock Holmes",
+            },
+            23: {
+                question: "What country drinks the most coffee per capita?",
+                answer: "Finland",
+            },
+            24: {
+                question: "Which planet in the Milky Way is the hottest?",
+                answer: "Venus",
+            },
+            25: {
+                question: "What is the 4th letter of the Greek alphabet?",
+                answer: "Delta",
+            },
+            26: {
+                question: "What sports car company manufactures the 911?",
+                answer: "Porsche",
+            },
+            27: {
+                question: "What city is known as 'The Eternal City'?",
+                answer: "Rome",
+            },
+            28: {
+                question: "Roald Amundsen was the first man to reach the South Pole, but where was he from?",
+                answer: "Norway",
+            },
+            29: {
+                question: "What is the highest-rated film on IMDb as of January 1st, 2022?",
+                answer: "The Shawshank Redemption",
+            },
+            30: {
+                question: "Who discovered that the earth revolves around the sun?",
+                answer: "Nicolaus Copernicus",
+            },
+            31: {
+                question: 'What company was initially known as "Blue Ribbon Sports"?',
+                answer: "Nike",
+            },
+            32: {
+                question: "What art form is described as 'decorative handwriting or handwritten lettering'?",
+                answer: "Calligraphy",
+            },
+            33: {
+                question: "Which planet has the most moons?",
+                answer: "Saturn",
+            },
+            34: {
+                question: "What country has won the most World Cups?",
+                answer: "Brazil",
+            },
+            35: {
+                question: 'Complete the following lyrics - "I should have changed that stupid lock....."',
+                answer: "I should have made you leave your key",
+            },
+            36: {
+                question: "Kratos is the main character of what video game series?",
+                answer: "God of War",
+            },
+            37: {
+                question: "In what country would you find Mount Kilimanjaro?",
+                answer: "Tanzania",
+            },
+            38: {
+                question: "What is a group of pandas known as?",
+                answer: "An embarrassment",
+            },
+            39: {
+                question: "What European country experienced the highest rate of population decline from 2015 - 2020?",
+                answer: "Lithuania",
+            },
+            40: {
+                question: "How many bones do we have in an ear?",
+                answer: "3",
+            },
+            41: {
+                question: "Who famously crossed the Alps with elephants on the way to war with the Romans?",
+                answer: "Hannibal",
+            },
+            42: {
+                question: "True or False: Halloween originated as an ancient Irish festival.",
+                answer: "True",
+            },
+            43: {
+                question: "What Netflix show had the most streaming views in 2021?",
+                answer: "Squid Game",
+            },
+            44: {
+                question: "Which Grammy-nominated New York rapper died in April of 2021?",
+                answer: "DMX",
+            },
+            45: {
+                question: "What software company is headquartered in Redmond, Washington?",
+                answer: "Microsoft",
+            },
+            46: {
+                question: "What is the largest Spanish-speaking city in the world?",
+                answer: "Mexico City",
+            },
+            47: {
+                question: "What is the world's fastest bird?",
+                answer: "The Peregrine Falcon",
+            },
+            48: {
+                question: "In what country is the Chernobyl nuclear plant located?",
+                answer: "Ukraine",
+            },
+            49: {
+                question: "The Parthenon Marbles are controversially located in what museum?",
+                answer: "The British Museum",
+            },
+        };
+        rand = Math.floor(Math.random() * 50 + 1)
+        let iv = document.getElementById("iv")
+        for (let i = 0; i < 1; i++) {
+            let text = document.createTextNode(OBJECT[rand].question)
+            iv.insertBefore(text, inp)
+        }
+        let btn = document.getElementById("btn")
+        btn.addEventListener('click',function(){
+            let inp = document.getElementById("inp")
+            if (inp.value.trim().toLowerCase() === OBJECT[rand].answer.trim().toLowerCase())
+            console.log("INNER YES")
+        })
+    </script>
+</body>
+
+</html>

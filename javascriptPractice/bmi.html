@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <label for="heigh">Height in cms</label>
+    <input id="heigh">
+    <br>
+    <label for="weigh">Weight in kgs</label>
+    <input id="weigh">
+    <br>
+    <button id="btn">Calculate</button>
+    <div id="ans"></div>
+    <script>
+        let btn = document.getElementById("btn")
+        let heigh = document.getElementById("heigh")
+        let weigh = document.getElementById("weigh")
+        let ans = document.getElementById("ans")
+        btn.addEventListener('click',function(){
+            ans.innerHTML = weigh.value / (heigh.value * heigh.value)
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="iv">
+        <input id="inp">
+        <button id="btn">Search</button>
+        <pre><div id="recipe"></div></pre>
+
+    </div>
+    <script>
+        let inp = document.getElementById("inp")
+        let btn = document.getElementById("btn")
+        let recipe = document.getElementById("recipe")
+        let item
+        btn.addEventListener('click', function () {
+            recipe.innerHTML = ""
+            item = inp.value.trim()
+            const url = `https://low-carb-recipes.p.rapidapi.com/search?name=${item}&includeIngredients=egg%3Bbutter&maxAddedSugar=0`;
+            const options = {
+                method: 'GET',
+                headers: {
+                    'X-RapidAPI-Key': '228d42258fmsh6e34c781dcce443p119948jsn8ef5b3c67a11',
+                    'X-RapidAPI-Host': 'low-carb-recipes.p.rapidapi.com'
+                }
+            };
+
+            try {
+                async function food() {
+                    const response = await fetch(url, options);
+                    const result = await response.json();
+                    console.log(result);
+                    for (i = 0; i < result.length; i++) {
+                        let ingredientList = result[i].ingredients.map((element) => `${element.name}\n${element.servingSize.grams}grams`).join("\n")
+                        let stepsList = result[i].steps.map((element) => `${element}`).join("\n");
+                        recipe.innerHTML += `${result[i].name}\n${result[i].description}\n${ingredientList}${result[i].cookTime}\n${stepsList}\n\n\n\n\n\n\n\n\n\n\n\n`;
+
+                    }
+                }
+                food()
+            } catch (error) {
+                console.error(error);
+            }
+        })
+    </script>
+</body>
+
+</html>

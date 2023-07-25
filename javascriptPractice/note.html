@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #msg{
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+        #msg.show{
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <label for="title">Enter the note Title</label>
+        <br>
+        <input id="title"></input>
+        <br>
+        <label for="txtarea">Enter the note content</label>
+        <br>
+        <textarea id="txtarea" rows ='10' cols = '160' style="resize: none" maxlength='1000'></textarea>
+        <br>
+        <button id="btn">Submit</button>
+        <br>
+        <label for="select">Choose from dropbox what you want to read </label>
+        <select id="select">
+            <option class="opt">None</option>
+        </select>
+        <br>
+        <label>Choose from dropbox what you want to delete and press delete </label>
+        <button id="btn_del">Delete</button>
+        <div id="msg"></div>
+    </div>
+    <script>
+        let count = 0
+        let title = document.getElementById("title")
+        let txtarea = document.getElementById("txtarea")
+        let btn = document.getElementById("btn")
+        let btn_del = document.getElementById("btn_del")
+        let msg = document.getElementById("msg")
+        let select = document.getElementById("select")
+        let opt = document.getElementsByClassName("opt")
+        btn.addEventListener('click',function(){
+            localStorage.setItem(`${count}`,`Title :${title.value} ,Content:${txtarea.value}`)
+            count = count + 1
+            title.value = ""
+            txtarea.value = ""
+            msg.innerHTML = "Your note has been added"
+            msg.classList.add("show")
+            setTimeout(()=>{
+                msg.classList.remove("show")
+            },9000)
+        })
+        let kys= Object.keys(localStorage)
+        for(let i= 0;i< kys.length ;i++){
+            let c = document.createElement("option")
+            c.classList.add("opt")
+            c.innerHTML = Object.keys(localStorage)[i]
+            select.appendChild(c)
+        }
+        var specific_key
+        select.addEventListener('change',function(){
+            specific_key =select.value
+            let obj = localStorage.getItem(select.value)
+            title.value = (obj.split(",")[0].slice(7).trim())
+            txtarea.value = (obj.split(",")[1].slice(8).trim())
+        })
+        // The key in the dropdown doesnt get updated after deleting the key
+        btn_del.addEventListener('click',function(){
+            localStorage.removeItem(specific_key)
+        })
+        
+    </script>
+</body>
+</html>
